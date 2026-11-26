@@ -11,11 +11,15 @@
 
 ### v1.1.0 · 傻瓜集成式（单文件 EXE，推荐）
 
-**➡️ [Windows更新暂停工具.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe)**
+**➡️ [WindowsUpdatePauseTool.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/WindowsUpdatePauseTool.exe)**
 
 - 双击 → UAC 点「是」→ 菜单选 `1`（直接回车也行）
 - 自带图标、中文界面，无需 PowerShell、无需解压
 - 若直链打不开，请到 **[Release 页面](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.0)** 下载
+
+> 想下载后文件名就是中文的 **`Windows更新暂停工具.exe`**？
+> 用仓库里的 [中文名副本](https://github.com/ATiprime/windows-update-pause-20y/raw/main/bin/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe)。
+> （GitHub 的 Release 资源名会**自动剥离非 ASCII 字符**，`中文.exe` 会变成 `default.exe`，所以 Release 里只能用英文名。）
 
 ### v1.0.0 · 脚本版（ZIP）
 

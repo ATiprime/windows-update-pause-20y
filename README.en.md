@@ -11,11 +11,15 @@
 
 ### v1.1.0 · All-in-one (single EXE, recommended)
 
-**➡️ [WindowsUpdatePauseTool.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe)**
+**➡️ [WindowsUpdatePauseTool.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/WindowsUpdatePauseTool.exe)**
 
 - Double-click → click **Yes** on UAC → choose `1` (or just press Enter)
 - Ships with an icon and a Chinese UI; no PowerShell, no unzipping
 - If the direct link fails, use the **[Releases page](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.0)**
+
+> Want the file to download as `Windows更新暂停工具.exe`?
+> Use the [Chinese-named copy](https://github.com/ATiprime/windows-update-pause-20y/raw/main/bin/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe).
+> (GitHub strips non-ASCII characters from release asset names — `中文.exe` becomes `default.exe` — so the release asset must be ASCII.)
 
 ### v1.0.0 · Script bundle (ZIP)
 
