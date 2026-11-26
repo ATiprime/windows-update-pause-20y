@@ -17,18 +17,18 @@ using System.Security.Principal;
 using System.Text;
 using Microsoft.Win32;
 
-[assembly: System.Reflection.AssemblyTitle("WindowsUpdatePause20Y")]
-[assembly: System.Reflection.AssemblyProduct("Windows 更新暂停工具")]
+[assembly: System.Reflection.AssemblyTitle("Windows更新暂停工具")]
+[assembly: System.Reflection.AssemblyProduct("Windows 更新暂停工具（傻瓜集成式）")]
 [assembly: System.Reflection.AssemblyDescription("一键暂停 / 恢复 Windows 更新（Windows 11 / 10，含家庭版）")]
 [assembly: System.Reflection.AssemblyCompany("ATiprime")]
-[assembly: System.Reflection.AssemblyVersion("1.0.0.0")]
-[assembly: System.Reflection.AssemblyFileVersion("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersion("1.0.0 (verified 2026-11-26)")]
+[assembly: System.Reflection.AssemblyVersion("1.1.0.0")]
+[assembly: System.Reflection.AssemblyFileVersion("1.1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersion("1.1.0 - 傻瓜集成式 (verified 2026-11-26)")]
 
 internal static class Program
 {
     private const string AppName    = "Windows 更新暂停工具";
-    private const string Version    = "1.0.0";
+    private const string Version    = "1.1.0";
     private const string VerifiedOn = "2026-11-26";
     private const string TestedEnv  = "Windows 11 家庭版 25H2 (Build 26200.9711)";
     private const string RepoUrl    = "https://github.com/ATiprime/windows-update-pause-20y";
@@ -239,7 +239,7 @@ internal static class Program
     {
         Console.WriteLine();
         Line("  ============================================================", ConsoleColor.Cyan);
-        Line("    " + AppName + "  v" + Version, ConsoleColor.Cyan);
+        Line("    " + AppName + "  v" + Version + "  傻瓜集成式", ConsoleColor.Cyan);
         Line("  ============================================================", ConsoleColor.Cyan);
         Console.WriteLine("    验证日期 : " + VerifiedOn);
         Console.WriteLine("    验证环境 : " + TestedEnv);
