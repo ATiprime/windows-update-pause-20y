@@ -4,6 +4,28 @@
 
 ---
 
+## ⬇️ 单文件 EXE（最省事）
+
+不想碰脚本？直接下载打包好的 EXE：
+
+**➡️ [WindowsUpdatePause20Y.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/WindowsUpdatePause20Y.exe)**
+
+双击 → UAC 点「是」→ 菜单选 `1`（直接回车也行）。
+
+中文菜单包含：
+
+```
+[1] 暂停更新 20 年（推荐）
+[2] 恢复更新
+[3] 仅预览，不修改
+[0] 退出
+```
+
+> 原生 C# 编译，**不需要 PowerShell、不需要解压、不需要 .NET 额外安装**（Win10/11 自带 .NET Framework 4.x）。
+> 未签名，首次运行若提示「已保护你的电脑」，点「更多信息」→「仍要运行」。
+
+---
+
 ## ⏳ 有效日期（请先看这个）
 
 | 项目 | 内容 |
