@@ -1,0 +1,5 @@
+backup-*.reg
+last-run.log
+*.log
+_dryrun.txt
+*.tmp
