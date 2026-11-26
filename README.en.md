@@ -1,6 +1,11 @@
 # Pause Windows Update for 20 Years
 
-[中文](README.md) | **English**
+[![Release](https://img.shields.io/github/v/release/ATiprime/windows-update-pause-20y?label=release&color=2ea44f)](https://github.com/ATiprime/windows-update-pause-20y/releases/latest)
+[![License](https://img.shields.io/github/license/ATiprime/windows-update-pause-20y?color=blue)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%2011%20%7C%2010-0078D6)](https://github.com/ATiprime/windows-update-pause-20y)
+[![Verified](https://img.shields.io/badge/verified-2026--11--26-success)](https://github.com/ATiprime/windows-update-pause-20y#-validity)
+
+[中文](README.md) | **English** ｜ [Changelog](CHANGELOG.md)
 
 > Built for **Windows 11 / 10 Home** editions — Home has no Group Policy Editor, and most guides on the internet simply don't work there.
 > One double-click. Fully reversible.
@@ -207,6 +212,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe `
 | File | Purpose |
 | --- | --- |
 | `bin/Windows更新暂停工具.exe` | **v1.1 all-in-one** executable |
+| `CHANGELOG.md` | Version history (1.0.0 → 1.1.1) |
 | `src/Program.cs` | C# source of the EXE |
 | `src/app.ico` | Application icon (16–256 px) |
 | `tools/make-icon.ps1` | Icon generator |

@@ -1,6 +1,11 @@
 # Windows 自动更新：一键暂停 20 年
 
-**中文** | [English](README.en.md)
+[![Release](https://img.shields.io/github/v/release/ATiprime/windows-update-pause-20y?label=release&color=2ea44f)](https://github.com/ATiprime/windows-update-pause-20y/releases/latest)
+[![License](https://img.shields.io/github/license/ATiprime/windows-update-pause-20y?color=blue)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%2011%20%7C%2010-0078D6)](https://github.com/ATiprime/windows-update-pause-20y)
+[![Verified](https://img.shields.io/badge/verified-2026--11--26-success)](https://github.com/ATiprime/windows-update-pause-20y#-有效日期请先看这个)
+
+**中文** | [English](README.en.md) ｜ [更新日志](CHANGELOG.md)
 
 > 专为 **Windows 11 / 10 家庭版（Home）** 设计——家庭版没有组策略，网上一半教程对它无效。
 > 双击一个 EXE 或 `.cmd` 就能用，完全可逆。
@@ -206,6 +211,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe `
 | 文件 | 作用 |
 | --- | --- |
 | `bin/Windows更新暂停工具.exe` | **v1.1 傻瓜集成式**，双击即用 |
+| `CHANGELOG.md` | 版本更新日志（1.0.0 → 1.1.1） |
 | `src/Program.cs` | EXE 的 C# 源码 |
 | `src/app.ico` | 程序图标（16–256 多尺寸） |
 | `tools/make-icon.ps1` | 图标生成脚本 |
