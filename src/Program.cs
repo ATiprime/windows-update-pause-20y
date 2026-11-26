@@ -16,19 +16,20 @@ using System.IO;
 using System.Security.Principal;
 using System.Text;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 [assembly: System.Reflection.AssemblyTitle("Windows更新暂停工具")]
 [assembly: System.Reflection.AssemblyProduct("Windows 更新暂停工具（傻瓜集成式）")]
 [assembly: System.Reflection.AssemblyDescription("一键暂停 / 恢复 Windows 更新（Windows 11 / 10，含家庭版）")]
 [assembly: System.Reflection.AssemblyCompany("ATiprime")]
-[assembly: System.Reflection.AssemblyVersion("1.1.0.0")]
-[assembly: System.Reflection.AssemblyFileVersion("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersion("1.1.0 - 傻瓜集成式 (verified 2026-11-26)")]
+[assembly: System.Reflection.AssemblyVersion("1.1.1.0")]
+[assembly: System.Reflection.AssemblyFileVersion("1.1.1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersion("1.1.1 - 修复中文显示 (verified 2026-11-26)")]
 
 internal static class Program
 {
     private const string AppName    = "Windows 更新暂停工具";
-    private const string Version    = "1.1.0";
+    private const string Version    = "1.1.1";
     private const string VerifiedOn = "2026-11-26";
     private const string TestedEnv  = "Windows 11 家庭版 25H2 (Build 26200.9711)";
     private const string RepoUrl    = "https://github.com/ATiprime/windows-update-pause-20y";
@@ -43,13 +44,8 @@ internal static class Program
     {
         try { Console.Title = AppName + " v" + Version; } catch { }
 
-        // 仅在输出被重定向（写日志）时切到 UTF-8，避免控制台窗口乱码
-        try
-        {
-            if (Console.IsOutputRedirected)
-                Console.OutputEncoding = new UTF8Encoding(false);
-        }
-        catch { }
+        // 用 Unicode 控制台 API 输出，避免非中文代码页把汉字变成 "?"
+        SetupConsole();
 
         try
         {
@@ -391,6 +387,96 @@ internal static class Program
                 p.StandardError.ReadToEnd();
                 p.WaitForExit();
             }
+        }
+    }
+
+    // ------------------------------------------------------- console output
+    // 非中文代码页（如 437/1252）下，Console 会把汉字转成 "?"。
+    // 直接调用 WriteConsoleW 输出 Unicode，可绕开代码页问题。
+    private const int STD_OUTPUT_HANDLE = -11;
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern IntPtr GetStdHandle(int nStdHandle);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool WriteConsoleW(IntPtr hConsoleOutput, string lpBuffer,
+        uint nNumberOfCharsToWrite, out uint lpNumberOfCharsWritten, IntPtr lpReserved);
+
+    private sealed class UnicodeConsoleWriter : TextWriter
+    {
+        private readonly IntPtr _handle;
+        private readonly TextWriter _fallback;
+
+        public UnicodeConsoleWriter(IntPtr handle, TextWriter fallback)
+        {
+            _handle = handle;
+            _fallback = fallback;
+        }
+
+        public override Encoding Encoding { get { return Encoding.Unicode; } }
+
+        public override void Write(char value)
+        {
+            Write(new string(value, 1));
+        }
+
+        public override void Write(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            uint written;
+            if (!WriteConsoleW(_handle, value, (uint)value.Length, out written, IntPtr.Zero))
+            {
+                if (_fallback != null) _fallback.Write(value);
+            }
+        }
+
+        public override void WriteLine(string value)
+        {
+            Write(value);
+            Write("\r\n");
+        }
+
+        public override void WriteLine()
+        {
+            Write("\r\n");
+        }
+    }
+
+    private static void SetupConsole()
+    {
+        try
+        {
+            IntPtr h = GetStdHandle(STD_OUTPUT_HANDLE);
+            uint mode;
+            bool isConsole = (h != IntPtr.Zero)
+                          && (h != new IntPtr(-1))
+                          && GetConsoleMode(h, out mode);
+
+            if (isConsole)
+            {
+                TextWriter fallback = Console.Out;
+                Console.SetOut(new UnicodeConsoleWriter(h, fallback));
+            }
+            else
+            {
+                // 输出被重定向（管道/文件）：直接写 UTF-8 字节，保证日志不乱码
+                StreamWriter sw = new StreamWriter(Console.OpenStandardOutput(), new UTF8Encoding(false), 4096);
+                sw.AutoFlush = true;
+                Console.SetOut(sw);
+            }
+        }
+        catch
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(Console.OpenStandardOutput(), new UTF8Encoding(false), 4096);
+                sw.AutoFlush = true;
+                Console.SetOut(sw);
+            }
+            catch { }
         }
     }
 

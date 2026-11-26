@@ -9,13 +9,19 @@
 
 ## 📥 Download
 
-### v1.1.0 · All-in-one (single EXE, recommended)
+### v1.1.1 · All-in-one (single EXE, recommended)
 
 **➡️ [WindowsUpdatePauseTool.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/WindowsUpdatePauseTool.exe)**
 
 - Double-click → click **Yes** on UAC → choose `1` (or just press Enter)
 - Ships with an icon and a Chinese UI; no PowerShell, no unzipping
-- If the direct link fails, use the **[Releases page](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.0)**
+- If the direct link fails, use the **[Releases page](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.1)**
+
+> **What did v1.1.1 fix?**
+> On machines whose console code page is a Western one (850/437 — e.g. Windows with an English UI
+> language but a Chinese locale), every Chinese character used to be printed as `????`.
+> v1.1.1 writes through the Unicode console API (`WriteConsoleW`), which **bypasses the code page**,
+> so the Chinese UI renders correctly under any regional setting.
 
 > Want the file to download as `Windows更新暂停工具.exe`?
 > Use the [Chinese-named copy](https://github.com/ATiprime/windows-update-pause-20y/raw/main/bin/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe).
@@ -31,7 +37,8 @@ For people who want to audit or tweak the source: **[Release v1.0.0](https://git
 
 | Version | Form | Notes |
 | --- | --- | --- |
-| **v1.1.0** | Single EXE | **All-in-one**: icon + menu, double-click to run |
+| **v1.1.1** | Single EXE | **All-in-one**: icon + menu, double-click to run (fixes garbled text on non-Chinese regional settings) |
+| v1.1.0 | Single EXE | First EXE release (Chinese showed as `????` on some machines) |
 | v1.0.0 | ZIP scripts | PowerShell + CMD, auditable and editable |
 
 ---
@@ -43,7 +50,7 @@ For people who want to audit or tweak the source: **[Release v1.0.0](https://git
 | **Verified on** | **2026-11-26** |
 | Tested environment | Windows 11 Home 25H2, Build 26200.9711 |
 | Pause expires | **2046-11-26** (run date + 20 years) |
-| Current version | v1.1.0 (all-in-one) |
+| Current version | v1.1.1 (all-in-one) |
 | Expected range | 23H2 / 24H2 / 25H2 Home; Windows 10 22H2 Home |
 | Breakage risk | A future Windows feature update may reset or block this method — open an Issue if so |
 

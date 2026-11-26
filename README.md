@@ -9,13 +9,18 @@
 
 ## 📥 下载
 
-### v1.1.0 · 傻瓜集成式（单文件 EXE，推荐）
+### v1.1.1 · 傻瓜集成式（单文件 EXE，推荐）
 
 **➡️ [WindowsUpdatePauseTool.exe](https://github.com/ATiprime/windows-update-pause-20y/releases/latest/download/WindowsUpdatePauseTool.exe)**
 
 - 双击 → UAC 点「是」→ 菜单选 `1`（直接回车也行）
 - 自带图标、中文界面，无需 PowerShell、无需解压
-- 若直链打不开，请到 **[Release 页面](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.0)** 下载
+- 若直链打不开，请到 **[Release 页面](https://github.com/ATiprime/windows-update-pause-20y/releases/tag/v1.1.1)** 下载
+
+> **v1.1.1 修复了什么？**
+> 之前在某些机器上（尤其是**系统区域设置不是中文**的 Windows，例如界面语言为 English 但用中文系统），
+> 控制台代码页是 850/437 等西欧代码页，程序里的中文会被转成 `????`。
+> v1.1.1 改用 Windows 的 Unicode 控制台 API（`WriteConsoleW`）输出，**绕开代码页**，任何区域设置下都能正常显示中文。
 
 > 想下载后文件名就是中文的 **`Windows更新暂停工具.exe`**？
 > 用仓库里的 [中文名副本](https://github.com/ATiprime/windows-update-pause-20y/raw/main/bin/Windows%E6%9B%B4%E6%96%B0%E6%9A%82%E5%81%9C%E5%B7%A5%E5%85%B7.exe)。
@@ -31,7 +36,8 @@
 
 | 版本 | 形式 | 说明 |
 | --- | --- | --- |
-| **v1.1.0** | 单文件 EXE | **傻瓜集成式**：图标 + 中文菜单，双击即用 |
+| **v1.1.1** | 单文件 EXE | **傻瓜集成式**：图标 + 中文菜单，双击即用（修复非中文区域设置下的乱码） |
+| v1.1.0 | 单文件 EXE | 首次提供 EXE 版本（部分机器中文显示为 `????`） |
 | v1.0.0 | ZIP 脚本包 | PowerShell + CMD，可审计、可修改 |
 
 ---
@@ -43,7 +49,7 @@
 | **方法实测通过** | **2026-11-26** |
 | 测试环境 | Windows 11 家庭版 25H2，Build 26200.9711 |
 | 暂停到期日 | **2046-11-26**（= 运行当天 + 20 年） |
-| 当前版本 | v1.1.0（傻瓜集成式） |
+| 当前版本 | v1.1.1（傻瓜集成式） |
 | 预计可用范围 | 23H2 / 24H2 / 25H2 家庭版；Win10 22H2 家庭版 |
 | 失效风险 | 微软后续大版本可能重置或封堵此机制，届时请提 Issue |
 
